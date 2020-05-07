@@ -1,29 +1,22 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import SearchBar from './components/SearchBar';
-import yelp from './api/yelp';
-
+import useResults from './hooks/useResults';
+import ResultsList from './components/ResultsList';
 
 const SearchScreen = () => {
     const [term, setTerm] = useState('');
-    const [results, setResults] = useState([]);
-    const [errorMessage, setErrorMessage] = useState('');
+    const [searchApi, results, errorMessage] = useResults();
+    
+    const filterResultsByPrice = (price) => {
+        // price === '$' || '$$' || '$$$'
+        return results.filter(result => {
+            return result.price === price; 
+        })
 
-    // Helper method for accessing the yelp Api (network request)
-    const searchApi = async searchTerm => {
-        try { // error handling for failed request
-            const response = await yelp.get('/search', {
-                params: {
-                    limit: 50,
-                    term: searchTerm,
-                    location: 'phoenix',
-                }
-            });
-            setResults(response.data.businesses); // updates the list of results
-        } catch (err) { // error handling for failed request
-            setErrorMessage('Something went wrong!');
-        }
-    };
+
+    }
+
 
     return (
         <View>
@@ -34,7 +27,11 @@ const SearchScreen = () => {
             />
             <Text>Search Screen</Text>
             {errorMessage ? <Text>{errorMessage}</Text> : null} 
-            <Text>We have found {results.length} results</Text> 
+            <Text>We have found {results.length} results</Text>
+            <ResultsList results={filterResultsByPrice('$')} title="Cost Effective" /> 
+            <ResultsList results={filterResultsByPrice('$$')} title="Bit Pricier"/>
+            <ResultsList results={filterResultsByPrice('$$$')} title="Big Spender"/>
+
         </View>
     );
 };
@@ -44,6 +41,12 @@ const styles = StyleSheet.create({
 });
 
 export default SearchScreen; 
+
+
+
+
+
+
 
 /* Ternary Operator Reminder: 
 conditionally render the text element if the user receives an error message
