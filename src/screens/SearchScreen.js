@@ -25,9 +25,9 @@ const SearchScreen = () => {
                 onTermChange={setTerm} //  pass a reference to the function that should be invoked
                 onTermSubmit={searchApi} // pass a reference to the function that should be invoked 
             />
-            <Text>Search Screen</Text>
+            
             {errorMessage ? <Text>{errorMessage}</Text> : null} 
-            <Text>We have found {results.length} results</Text>
+            <Text style={styles.resultCount}>We have found {results.length} results</Text>
             <ResultsList results={filterResultsByPrice('$')} title="Cost Effective" /> 
             <ResultsList results={filterResultsByPrice('$$')} title="Bit Pricier"/>
             <ResultsList results={filterResultsByPrice('$$$')} title="Big Spender"/>
@@ -37,7 +37,9 @@ const SearchScreen = () => {
 };
 
 const styles = StyleSheet.create({
-
+    resultCount: {
+        alignSelf: 'center'
+    },
 });
 
 export default SearchScreen; 

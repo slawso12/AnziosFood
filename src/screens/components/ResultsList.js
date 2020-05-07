@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
-// import useResults from '../hooks/useResults';
+import ResultsDetail from './ResultsDetail';
 
 const ResultsList = ({ title, results }) => {
 
     return (
-        <View>
+        <View style={styles.container}>
             <Text style={styles.title}>{title}</Text>
             <FlatList
                 horizontal
@@ -13,7 +13,7 @@ const ResultsList = ({ title, results }) => {
                 keyExtractor={(result) => result.id}
 
                 renderItem={({ item }) => { // the object being iterated over
-                    return <Text>{item.name}</Text>
+                    return <ResultsDetail result={item} />
                 }}
 
             />
@@ -25,7 +25,11 @@ const ResultsList = ({ title, results }) => {
 const styles = StyleSheet.create({
     title: {
         fontSize: 30,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginLeft: 15
+    }, 
+    container: {
+        marginBottom: 10
     }
 
 });
