@@ -24,7 +24,7 @@ export default () => {
 
     // launches the initial search on page load
     useEffect(() => {
-        searchApi('pasta');
+        searchApi('');
     }, []); // [] is the second argument 
 
     return [searchApi, results, errorMessage];

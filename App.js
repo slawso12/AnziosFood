@@ -4,6 +4,7 @@ import SearchScreen from './src/screens/SearchScreen';
 import SearchBar from './src/screens/components/SearchBar';
 import ResultsList from './src/screens/components/ResultsList';
 import ResultsDetail from './src/screens/components/ResultsDetail';
+import ResultsShowScreen from './src/screens/ResultsShowScreen';
 
 const navigator = createStackNavigator(
   {
@@ -11,7 +12,8 @@ const navigator = createStackNavigator(
     Search: SearchScreen,
     Bar: SearchBar,
     List: ResultsList, 
-    Detail: ResultsDetail 
+    Detail: ResultsDetail,
+    ResultsShow: ResultsShowScreen 
   },
   {
     initialRouteName: 'Search',
