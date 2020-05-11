@@ -23,7 +23,7 @@ const SearchScreen = ({ }) => {
             <SearchBar
                 term={term}
                 onTermChange={setTerm} //  pass a reference to the function that should be invoked
-                onTermSubmit={searchApi} // pass a reference to the function that should be invoked 
+                onTermSubmit={() => searchApi(term) } // pass a reference to the function that should be invoked 
             />
 
             {errorMessage ? <Text>{errorMessage}</Text> : null}
