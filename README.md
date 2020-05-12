@@ -7,4 +7,3 @@ Restaurant app
 - `npm update` after cloning the project 
 - If you run into problems `npm audit fix` then `npm install`
 - `expo start || npm start` to run the project on local device
-- 
